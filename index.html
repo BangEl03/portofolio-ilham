@@ -58,13 +58,30 @@
       height: 55px;
     }
 
-    .foto {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+.foto {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
 
+  /* 🔥 efek dasar */
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+  /* animasi halus */
+  transition: all 0.3s ease;
+}
+
+.foto:hover {
+  transform: scale(1.08);
+
+  /* glow merah (branding kamu) */
+  box-shadow: 0 0 20px rgba(211, 47, 47, 0.6),
+              0 6px 20px rgba(0,0,0,0.4);
+
+  border-color: #d32f2f;
+}
+    
     .cv-section {
       margin-top: 20px;
     }

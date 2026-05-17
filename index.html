@@ -58,8 +58,6 @@
     opacity: 0;
   }
 }
-
-background: rgba(255, 255, 255, 0.4);
     
     .navbar a {
       margin-right: 15px;
@@ -73,6 +71,15 @@ background: rgba(255, 255, 255, 0.4);
       font-weight: bold;
     }
 
+.navbar a {
+  position: relative;   /* WAJIB */
+  overflow: hidden;     /* BIAR RIPPLE GAK KELUAR */
+}
+
+.ripple {
+  background: rgba(255, 255, 255, 0.3); /* lebih soft */
+}
+    
     .container {
       width: 85%;
       margin: 20px auto;

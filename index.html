@@ -1,541 +1,808 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Zona Kompetensi Ilham</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Ilham - Kompetensi</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      margin: 0;
-      background: #f5f5f5;
-      transition: 0.3s;
-    }
-
-    .header {
-      background: white;
-      color: white;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSlide 0.6s ease forwards;
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
 }
 
-@keyframes fadeSlide {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Background + overlay langsung */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: 
+        linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)),
+        url('bgtuguptk.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    z-index: -1;
 }
 
-    .navbar {
-      background: #2c2c2c;
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    .navbar a {
-      margin-right: 15px;
-      cursor: pointer;
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .navbar a.active {
-      color: #ff5252;
-      font-weight: bold;
-    }
-
-.navbar a {
-  position: relative;
-  margin-right: 15px;
-  text-decoration: none;
-  color: #555;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 5px 0;
-  transition: color 0.3s ease;
+.cta-btn {
+    background: white;
+    color: #2563eb;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* hover warna */
-.navbar a:hover {
-  color: #d32f2f;
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* garis bawah animasi */
-.navbar a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: #d32f2f;
-  transition: width 0.3s ease;
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+
+    background: rgba(255, 255, 255, 0.75); /* transparan */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.navbar a:hover::after {
-  width: 100%;
+.logo img {
+    height: 50px;
 }
 
-/* menu aktif */
-.navbar a.active {
-  color: #d32f2f;
-  font-weight: bold;
+.hero-box {
+    background: linear-gradient(
+        135deg,
+        rgba(30, 58, 138, 0.4),
+        rgba(37, 99, 235, 0.3)
+    );
+
+    backdrop-filter: blur(4px);
+
+    color: white;
+    padding: 60px 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: fade 0.8s ease;
+}
+.hero-box h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
 }
 
-.navbar a.active::after {
-  width: 100%;
+.hero-box p {
+    font-size: 16px;
+    opacity: 0.9;
 }
 
-    .container {
-      width: 85%;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-    }
+.section-box {
+    margin-top: 40px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
 
-    /* CV */
-    .cv-header {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 
-    .logo {
-      height: 55px;
-    }
+    line-height: 1.7;
+    color: #334155;
+}
 
-    .foto {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+.section-box p {
+    margin-bottom: 15px;
+}
+
+.section-box {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.menu a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #475569;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+
+.menu a.active {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.menu a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2563eb;
+}
+
+.cv-section {
+    margin-bottom: 25px;
+}
+
+.cv-section h3 {
+    margin-bottom: 8px;
+    color: #0f172a;
+}
+
+.cv-section ul {
+    padding-left: 18px;
+    line-height: 1.6;
+}
+
+/* CONTENT */
+.container {
+    display: flex;
+    min-height: calc(100vh - 70px);
+    padding: 20px; /* 🔥 ini kunci biar gak nempel layar */
+}
+
+.tentang-container {
+    display: flex;
+    gap: 30px;
+}
+
+/* KIRI */
+.tentang-kiri {
+    width: 35%;
+    background: rgba(255,255,255,0.65);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
 
 .foto {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  /* 🔥 efek dasar */
-  border: 3px solid white;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-
-  /* animasi halus */
-  transition: all 0.3s ease;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
-.foto:hover {
-  transform: scale(1.08);
-
-  /* glow merah (branding kamu) */
-  box-shadow: 0 0 20px rgba(211, 47, 47, 0.6),
-              0 6px 20px rgba(0,0,0,0.4);
-
-  border-color: #d32f2f;
+.jabatan {
+    color: #64748b;
+    margin-bottom: 20px;
 }
 
-    .cv-section {
-      margin-top: 20px;
+/* KANAN */
+.tentang-kanan {
+    flex: 1;
+    background: rgba(255,255,255,0.65);
+    padding: 25px;
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+/* LEFT */
+.sidebar {
+    width: 280px;
+    padding: 30px 20px; /* 🔥 atas bawah diperbesar */
+
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.item {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.item:hover {
+    background: #f1f5f9;
+}
+
+.item.active {
+    background: #2563eb;
+    color: white;
+}
+
+.item {
+    color: #0f172a;
+    font-weight: 500;
+}
+
+.item:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.item.active {
+    background: #2563eb;
+    color: white;
+}
+
+.page-enter {
+    animation: slideFade 0.5s ease;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail {
+    animation: fade 0.35s ease;
+}
+
+.detail {
+    animation: fade 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+    .tentang-container {
+        flex-direction: column;
     }
 
-    .cv-section h3 {
-      color: red;
-      margin-bottom: 5px;
+    .tentang-kiri {
+        width: 100%;
     }
 
-    /* Kompetensi */
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu {
+        display: flex;
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .menu {
+        display: flex;
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .hero-box {
+        padding: 40px 20px;
+    }
+
+    .hero-box h1 {
+        font-size: 30px;
+    }
+
+}
+
+/* RIGHT */
+.detail {
+    flex: 1;
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.75); /* 🔥 putih transparan */
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+    margin: 20px;
+
+    border: 1px solid rgba(255,255,255,0.3);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+    color: #0f172a; /* 🔥 balik ke teks gelap */
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+    }
+
     .item {
-      display: flex;
-      border-top: 1px solid #ddd;
-      padding: 10px 0;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
-.item ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.item li {
-  margin-bottom: 5px;
-}
-
-.note {
-  font-style: italic;
-  font-weight: 600;
-  color: #444;
-}
-
-    .label {
-      width: 120px;
-      font-weight: bold;
-      color: red;
+    .detail {
+        margin: 10px;
+        padding: 20px;
     }
 
-.footer {
-  text-align: center;
-  font-size: 12px;
-  color: #999;
-  margin: 20px 0;
 }
 
-  </style>
+</style>
 </head>
-
 <body>
 
-<div class="header">
-  <img src="logota.png" class="logo">
-</div>
-
 <div class="navbar">
-  <a onclick="ganti('cv', this)" class="active">About Me</a>
-  <a onclick="ganti('digital', this)">Digital</a>
-  <a onclick="ganti('global', this)">Global</a>
-  <a onclick="ganti('customer', this)">Customer</a>
-  <a onclick="ganti('partnership', this)">Partnership</a>
-  <a onclick="ganti('orientation', this)">Orientation</a>
-  <a onclick="ganti('execution', this)">Execution</a>
-  <a onclick="ganti('innovation', this)">Innovation</a>
-  <a onclick="ganti('developing', this)">Developing</a>
-  <a onclick="ganti('change', this)">Change</a>
-  <a onclick="ganti('diversity', this)">Diversity</a>
+    <div class="logo">
+        <img src="logota.png">
+    </div>
+    <div class="menu">
+    <a id="m-beranda" class="active" onclick="showPage('beranda')">Beranda</a>
+    <a id="m-kompetensi" onclick="showPage('kompetensi')">10 Kompetensi</a>
+    <a id="m-tentang" onclick="showPage('tentang')">Tentang</a>
+</div>
+</div> <!-- tutup navbar -->
+<!-- BERANDA -->
+<div id="beranda">
+
+    <div class="hero-box">
+    <h1>Perjalanan 10 Kompetensi</h1>
+
+    <p style="font-size:18px; margin-top:10px;">
+        Membangun cara berpikir, bukan sekadar menyelesaikan pekerjaan.
+    </p>
+
+    <div style="margin-top:25px;">
+        <button class="cta-btn" onclick="showPage('kompetensi')">
+            Lihat Kompetensi
+        </button>
+    </div>
 </div>
 
-<div class="container fade-in" id="content"></div>
+    <div class="section-box">
+        <p>
+            Halaman ini saya susun sebagai bentuk refleksi dari pengalaman kerja 
+            yang saya jalani, khususnya dalam mengelola berbagai situasi yang menuntut 
+            adaptasi, koordinasi, dan tanggung jawab.
+        </p>
 
+        <p>
+            Setiap kompetensi yang ditampilkan bukan hanya menjelaskan apa yang saya kerjakan,
+            tetapi bagaimana saya berpikir, mengambil keputusan, dan memastikan pekerjaan 
+            tetap berjalan sesuai target meskipun dalam kondisi yang tidak selalu ideal.
+        </p>
+
+        <p>
+            Silakan eksplorasi setiap kompetensi untuk melihat lebih dalam proses 
+            yang saya jalani.
+        </p>
+    </div>
+
+</div>
+<!-- KOMPETENSI -->
+<div id="kompetensi" class="hidden container">
+
+    <!-- LEFT -->
+    <div class="sidebar">
+        <div class="item active" onclick="showDetail('dl', this)">L-01 DIGITAL LEADERSHIP</div>
+<div class="item" onclick="showDetail('gb', this)">L-02 GLOBAL BUSINESS SAVVY</div>
+<div class="item" onclick="showDetail('cf', this)">L-03 CUSTOMER FOCUS</div>
+<div class="item" onclick="showDetail('bs', this)">L-04 BUILDING STRATEGIC PARTNERSHIP</div>
+<div class="item" onclick="showDetail('so', this)">L-05 STRATEGIC ORIENTATION</div>
+<div class="item" onclick="showDetail('de', this)">L-06 DRIVING EXECUTION</div>
+<div class="item" onclick="showDetail('di', this)">L-07 DRIVING INNOVATION</div>
+<div class="item" onclick="showDetail('do', this)">L-08 DEVELOPING ORGANIZATIONAL CAPABILITIES</div>
+<div class="item" onclick="showDetail('lc', this)">L-09 LEADING CHANGE</div>
+<div class="item" onclick="showDetail('md', this)">L-10 MANAGING DIVERSITY</div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="detail">
+
+        <div id="md">
+            <h2>L-10 Managing Diversity</h2>
+
+<p><b>Pengertian:</b><br>
+Kemampuan untuk memahami, mengelola, dan menyelaraskan perbedaan kondisi, karakter, dan cara kerja dalam tim agar tetap mampu mencapai target secara efektif dan berkelanjutan.
+</p>
+
+<p><b>Situation:</b><br>
+Pada Januari 2026, saya menangani project B2B Telkom Akses yang tersebar di beberapa wilayah Kalimantan Barat, seperti Ketapang, Kayong Utara, Sintang, Sanggau, hingga Pontianak.  
+Setiap wilayah memiliki tantangan yang berbeda, baik dari sisi geografis, jarak tempuh yang cukup jauh, maupun karakter dan cara kerja tim di lapangan.
+</p>
+
+<p><b>Task:</b><br>
+Saya bertanggung jawab memastikan seluruh pekerjaan dapat diselesaikan dalam waktu 2 bulan, dengan kualitas tetap sesuai standar, serta menjaga agar seluruh tim tetap bisa bekerja selaras meskipun berada di kondisi dan lingkungan yang berbeda.
+</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li><b>Berpikir terbuka:</b> Saya tidak menyamaratakan pendekatan kerja, tetapi terlebih dahulu memahami kondisi masing-masing wilayah dan karakter tim sebelum menentukan strategi.</li>
+
+<li><b>Mengelola perbedaan:</b> Saya menyesuaikan pola kerja antara wilayah remote dan perkotaan, termasuk dalam pengaturan waktu, prioritas pekerjaan, dan distribusi tugas.</li>
+
+<li><b>Mengembangkan tim tanpa membedakan:</b> Saya memberikan kepercayaan kepada anggota tim dengan menunjuk PIC di setiap wilayah, sehingga mereka dapat mengambil keputusan lebih cepat dan berkembang sebagai leader di lapangan.</li>
+
+<li><b>Mengantisipasi potensi miskomunikasi:</b> Saya membangun sistem komunikasi yang lebih terstruktur melalui laporan harian dan koordinasi rutin, untuk memastikan informasi tetap jelas dan tidak menimbulkan salah paham.</li>
+
+<li><b>Membangun hubungan dengan berbagai pihak:</b> Saya aktif menjalin komunikasi dengan stakeholder dan pihak lokal untuk memperlancar proses pekerjaan serta mengatasi kendala di lapangan.</li>
+</ul>
+
+<p><b>Result:</b><br>
+Seluruh pekerjaan di berbagai wilayah berhasil diselesaikan tepat waktu sesuai target yang ditentukan.  
+Selain itu, koordinasi antar tim tetap berjalan dengan baik meskipun memiliki perbedaan latar belakang dan kondisi, serta hubungan dengan stakeholder tetap terjaga hingga proses serah terima selesai.
+</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- TENTANG -->
+<div id="tentang" class="hidden" style="padding:40px;">
+
+    <div class="tentang-container">
+
+        <!-- KIRI -->
+        <div class="tentang-kiri">
+            <img src="fotoprofil.jpg" class="foto">
+
+            <h2>Ilham Wahyudi</h2>
+            <p class="jabatan">
+                Teknisi Manage Operation SPBU<br>
+                PT Telkom Akses
+            </p>
+
+            <div class="cv-section">
+                <h3>Keahlian</h3>
+                <ul>
+                    <li>Network Troubleshooting</li>
+                    <li>Monitoring Sistem</li>
+                    <li>Database Management</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+
+            <div class="cv-section">
+                <h3>Kontak</h3>
+                <p>
+                    WA: 0852 3265 8898<br>
+                    Email: wahyudiilham004@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <!-- KANAN -->
+        <div class="tentang-kanan">
+
+            <div class="cv-section">
+                <h3>Profil</h3>
+                <p>
+                    Saya merupakan Teknisi Manage Operation SPBU di PT Telkom Akses 
+                    dengan pengalaman lebih dari 4 tahun dalam pengelolaan jaringan operasional.
+                </p>
+                <p>
+                    Terbiasa menangani troubleshooting secara cepat dan memastikan 
+                    stabilitas layanan tetap optimal di berbagai kondisi lapangan.
+                </p>
+            </div>
+
+            <div class="cv-section">
+                <h3>Pengalaman</h3>
+                <ul>
+                    <li>Admin Database (2013–2015)</li>
+                    <li>Kepala Divisi RnD (2016–2019)</li>
+                    <li>Teknisi Telkom Akses (2019–Sekarang)</li>
+                </ul>
+            </div>
+
+            <div class="cv-section">
+                <h3>Pendidikan</h3>
+                <ul>
+                    <li>SMA Negeri 1 Sungai Raya</li>
+                    <li>Ponpes Wali Barokah</li>
+                    <li>Universitas Terbuka (Hukum)</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <script>
+function showPage(page) {
+    const pages = ['beranda', 'kompetensi', 'tentang'];
 
-// 🔥 DATA
-const data = {
+    pages.forEach(p => {
+        const el = document.getElementById(p);
+        el.classList.add('hidden');
+        el.classList.remove('page-enter'); // reset animasi
+    });
 
-cv: {
-  warna:"#212121",
-  html: `
-    <div class="cv-header">
-      <img src="fotoprofil.jpg" class="foto">
-      <div>
-        <h2>Ilham Wahyudi</h2>
-        <p>Teknisi Manage Operation SPBU (2019 - Sekarang)</p>
-      </div>
-    </div>
+    const activePage = document.getElementById(page);
+    activePage.classList.remove('hidden');
 
-    <div class="cv-section">
-      <h3>👤 Profil</h3>
-      <p>Teknisi Manage Operation SPBU di PT. Telkom Akses dengan pengalaman lebih dari 4 tahun dalam 
-pengelolaan dan pemeliharaan jaringan operasional.
-<br>
-Terbiasa menangani troubleshooting 
-secara cepat dan tepat, serta memastikan stabilitas layanan tetap optimal.
-<br>
-Memiliki kemampuan analisis yang kuat, komunikasi tim yang baik, serta berorientasi pada 
-solusi dan peningkatan efisiensi kerja.
-<br>
-Siap berkontribusi lebih dalam pengembangan sistem 
-dan transformasi digital perusahaan.</p>
-    </div>
+    // trigger animasi
+    setTimeout(() => {
+        activePage.classList.add('page-enter');
+    }, 10);
 
-    <div class="cv-section">
-      <h3>💼 Pengalaman</h3>
-      <p>
-<ul>
-  <li>Admin Database di Pondok Pesantren Wali Barokah Kediri (2013-2015)</li>
-  <li>Kepala Divisi RnD Koperasi Borneo Agrosindo Pelaihari (2016-2019)</li>
-  <li>Helpdesk dan Teknisi Manage Service SPBU PT. Telkom Akses (2019-Sekarang)</li>
-</ul></p>
-    </div>
-
- <div class="cv-section">
-      <h3>🎓 Pendidikan</h3>
-      <p>
-<ul>
-  <li>SD Negri 21 Arang Limbung</li>
-  <li>SMP Negri 1 Sungai Raya</li>
-  <li>SMA Negri 1 Sungai Raya</li>
-  <li>Pondok Pesantren Wali Barokah Kediri (2011-2015)</li>
-  <li>Universitas Terbuka Fak. Hukum (2024-Sekarang)</li>
-</ul></p>
-    </div>
-
-    <div class="cv-section">
-      <h3>🛠️ Skill</h3>
-      <p>
-<ul>
-  <li>Database Administration, Professional Presentation and Archival Management</li>
-  <li>Network Troubleshooting & Maintenance</li>
-  <li>Monitoring Sistem Operasional</li>
-  <li>Problem Solving & Analytical Thinking</li>
-</ul></p>
-    </div>
-
-    <div class="cv-section">
-      <h3>📞 Kontak</h3>
-      <p>Whatsapp: 0852 3265 8898<br>
-Email: wahyudiilham004@gmail.com<br>
-Kubu Raya, Kalimantan Barat</p>
-    </div>
-  `
-},
-
-  digital: {
-    warna: "#1565c0",
-    judul: "L-01 DIGITAL LEADERSHIP",
-    desc: `
-Kemampuan untuk mengarahkan, memimpin serta mengevaluasi proses transformasi digital,
-dengan mendayagunakan seluruh sumber daya dan nilai tambah yang dimiliki Perusahaan.
-<br><br>
-<span class="note">Digunakan untuk: menyampaikan usulan</span>`,
-    situation: "Proses masih manual",
-    task: "Efisiensi kerja",
-    action: `
-<ul>
-  <li>Pahami situasi : ceritakan disini... </li>
-  <li>Atur strategi : ceritakan disini...</li>
-  <li>Integrasikan data : ceritakan disini...</li>
-  <li>Minta masukan : ceritakan disini...</li>
-  <li>Sampaikan rekomendasi : ceritakan disini...</li>
-</ul>
-`,
-    result: "Lebih cepat"
-  },
-
-  global: {
-    warna: "#283593",
-    judul: "L-02 GLOBAL BUSINESS SAVVY",
-    desc: `
-Kemampuan mengembangkan bisnis, meningkatkan daya saing dan menciptakan nilai tambah Perusahaan dengan mempertimbangkan perkembangan dan tren bisnis global dari berbagai aspek (ekonomi, sosial, budaya, teknologi, dan politik internasional).
-<br><br>
-<span class="note">Digunakan untuk: memahami situasi bisnis global</span>`,
-    situation: "Persaingan tinggi",
-    task: "Naikkan daya saing",
-    action: `
-<ul>
-  <li>Komunikasikan arah bisnis : ceritakan disini... </li>
-  <li>Komunikasikan pentingnya ekosistem global : ceritakan disini...</li>
-  <li>Optimalkan operasional bisnis : ceritakan disini...</li>
-  <li>Berikan usulan : ceritakan disini...</li>
-  <li>Pimpin perbaikan bisnis : ceritakan disini...</li>
-</ul>
-`,
-    result: "Strategi tepat"
-  },
-
-  customer: {
-    warna: "#2e7d32",
-    judul: "L-03 CUSTOMER FOCUS",
-    desc: `
-Kemampuan untuk mengidentifikasi kebutuhan pelanggan, dan memberikan pelayanan terbaik dalam memastikan tercapainya tuntutan dan harapan pelanggan.
-<br><br>
-<span class="note">Digunakan untuk: menghadapi pelanggan</span>`,
-    situation: "Keluhan meningkat",
-    task: "Perbaiki layanan",
-    action: `
-<ul>
-  <li>Cegah masalah pelanggan : ceritakan disini... </li>
-  <li>Beri layanan lebih : ceritakan disini...</li>
-  <li>Kembangkan layanan : ceritakan disini...</li>
-  <li>Bina hubungan : ceritakan disini...</li>
-  <li>Munculkan inovasi : ceritakan disini...</li>
-</ul>
-`,
-    result: "Lebih puas"
-  },
-
-  partnership: {
-    warna: "#00897b",
-    judul: "L-04 BUILDING STRATEGIC PARTNERSHIP",
-    desc: `
-Kemampuan membangun dan mengembangkan kemitraan strategis dengan stakeholder untuk membawa dan meningkatkan nilai tambah bagi Perusahaan.
-<br><br>
-<span class="note">Digunakan untuk: membangun kerja sama</span>`,
-    situation: "Relasi terbatas",
-    task: "Perlu kolaborasi",
-    action: `
-<ul>
-  <li>Bangun hubungan lintas unit : ceritakan disini... </li>
-  <li>Ciptakan harmonis & kolaboratif : ceritakan disini...</li>
-  <li>Diskusikan masalah bersama : ceritakan disini...</li>
-  <li>Ambil keputusan bersama : ceritakan disini...</li>
-  <li>Cepat menyesuaikan diri : ceritakan disini...</li>
-</ul>
-`,
-    result: "Nilai tambah"
-  },
-
-  orientation: {
-    warna: "#6a1b9a",
-    judul: "L-05 STRATEGIC ORIENTATION",
-    desc: `
-Kemampuan menetapkan sasaran jangka panjang berdasarkan sudut pandang yang utuh dan komprehensif untuk meningkatkan daya saing dan nilai tambah Perusahaan.
-<br><br>
-<span class="note">Digunakan untuk: mencapai tujuan strategis</span>`,
-    situation: "Arah belum jelas",
-    task: "Tentukan strategi",
-    action: `
-<ul>
-  <li>Bangun komunikasi utk tujuan strategis : ceritakan disini... </li>
-  <li>Identifikasi kapabilitas internal utk memperbarui tujuan strategis : ceritakan disini...</li>
-  <li>Ambil tanggung jawab : ceritakan disini...</li>
-  <li>Bina relasi internal & eksternal : ceritakan disini...</li>
-  <li>Antisipasi & mitigasi resiko : ceritakan disini...</li>
-</ul>
-`,
-    result: "Lebih terarah"
-  },
-
-  execution: {
-    warna: "#ef6c00",
-    judul: "L-06 DRIVING EXECUTION",
-    desc: `
-Kemampuan menerjemahkan dan mengimplementasikan strategi menjadi rencana kerja dan memastikan terlaksananya pekerjaan untuk mencapai sasaran yang diinginkan. 
-<br><br>
-<span class="note">Digunakan untuk: eksekusi pekerjaan</span>`,
-    situation: "Rencana belum jalan",
-    task: "Implementasi",
-    action: `
-<ul>
-  <li>Ambil tanggung jawab : ceritakan disini... </li>
-  <li>Tambah sumberdaya : ceritakan disini...</li>
-  <li>Munculkan ide baru : ceritakan disini...</li>
-  <li>Evaluasi resiko : ceritakan disini...</li>
-  <li>Monitoring & evaluasi : ceritakan disini...</li>
-</ul>
-`,
-    result: "Target tercapai"
-  },
-
-  innovation: {
-    warna: "#8e24aa",
-    judul: "L-07 DRIVING INNOVATION",
-    desc: `
-Kemampuan mendorong orang lain agar terus berkreasi dan berinovasi sehingga meningkatkan proses dan hasil kerja dalam Organisasi. 
-<br><br>
-<span class="note">Digunakan untuk: memperbaiki proses kerja</span>`,
-    situation: "Kurang ide",
-    task: "Inovasi",
-    action: `
-<ul>
-  <li>Minta & terima ide : ceritakan disini... </li>
-  <li>Pimpin ide : ceritakan disini...</li>
-  <li>Analisa resiko : ceritakan disini...</li>
-  <li>Cek performansi : ceritakan disini...</li>
-  <li>Sempurnakan lagi : ceritakan disini...</li>
-</ul>
-`,
-    result: "Ide muncul"
-  },
-
-  developing: {
-    warna: "#3949ab",
-    judul: "L-08 DEVELOPING ORGANIZATIONAL CAPABILITIES",
-    desc: `
-Kemampuan membangun strategi, struktur, dan sistem yang dapat memaksimalkan pengembangan kapabilitas dan kapasitas organisasi dan talenta dalam Perusahaan. 
-<br><br>
-<span class="note">Digunakan untuk: meningkatkan kapabilitas</span>`,
-    situation: "Skill kurang",
-    task: "Tingkatkan",
-    action: `
-<ul>
-  <li>Sesuaikan ilmu dgn kondisi saat ini : ceritakan disini... </li>
-  <li>Tambah pengetahuan & keterampilan : ceritakan disini...</li>
-  <li>Belajar bersama : ceritakan disini...</li>
-  <li>Manfaatkan informasi internal & eksternal : ceritakan disini...</li>
-  <li>Saling berbagi : ceritakan disini...</li>
-</ul>
-`,
-    result: "Lebih kompeten"
-  },
-
-  change: {
-    warna: "#c62828",
-    judul: "L-09 LEADING CHANGE",
-    desc: `
-Kemampuan untuk mengidentifikasi, melaksanakan dan memimpin perubahan dalam organisasi menuju kondisi yang diinginkan secara berkelanjutan. 
-<br><br>
-<span class="note">Digunakan untuk: melakukan perubahan</span>`,
-    situation: "Resisten",
-    task: "Adaptasi",
-    action: `
-<ul>
-  <li>Promosikan budaya perusahaan : ceritakan disini... </li>
-  <li>Ambil keputusan secara komprehensif : ceritakan disini...</li>
-  <li>Apresiasi kontribusi orang lain : ceritakan disini...</li>
-  <li>Terima masukan orang lain : ceritakan disini...</li>
-  <li>Kelola reaksi negatif : ceritakan disini...</li>
-</ul>
-`,
-    result: "Berhasil"
-  },
-
-  diversity: {
-    warna: "#455a64",
-    judul: "L-10 MANAGING DIVERSITY",
-    desc: `
-Kemampuan untuk mengidentifikasi, melaksanakan dan memimpin perubahan dalam organisasi menuju kondisi yang diinginkan secara berkelanjutan. 
-<br><br>
-<span class="note">Digunakan untuk: menghadapi perbedaan</span>`,
-    situation: "Beragam tim",
-    task: "Sinergi",
-    action: `
-<ul>
-  <li>Berpikir terbuka : ceritakan disini... </li>
-  <li>Kelola perbedaan : ceritakan disini...</li>
-  <li>Kembangkan orang lain tanpa membedakan : ceritakan disini...</li>
-  <li>Kenali situasi yg bisa menimbulkan salah paham : ceritakan disini...</li>
-  <li>Bangun hubungan dg berbagai pihak : ceritakan disini...</li>
-</ul>
-`,
-    result: "Harmonis"
-  }
-
-};
-
-// 🔥 FUNCTION
-function ganti(kode, el){
-
-  // warna menu
-  document.querySelectorAll(".navbar a").forEach(a=>{
-    a.classList.remove("active");
-  });
-  el.classList.add("active");
-
-  let d = data[kode];
-  document.body.style.background = d.warna;
-
-  // CV
-  if(kode === "cv"){
-    document.getElementById("content").innerHTML = d.html;
-  }
-
-  // Kompetensi
-  else{
-    document.getElementById("content").innerHTML = `
-      <h2>${d.judul}</h2>
-      <p>${d.desc}</p>
-
-      <div class="item"><div class="label">SITUATION</div><div>${d.situation}</div></div>
-      <div class="item"><div class="label">TASK</div><div>${d.task}</div></div>
-      <div class="item"><div class="label">ACTION</div><div>${d.action}</div></div>
-      <div class="item"><div class="label">RESULT</div><div>${d.result}</div></div>
-    `;
-  }
+    // ACTIVE MENU
+    document.querySelectorAll('.menu a').forEach(el => el.classList.remove('active'));
+    document.getElementById('m-' + page).classList.add('active');
 }
 
-// default
-ganti('cv', document.querySelector('.navbar a'));
+function showDetail(type, el) {
 
-</script>
-<p class="footer">
-  © Ilham Wahyudi - 2026
+    document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+
+    let data = {
+
+        dl: `
+        <h2>L-01 Digital Leadership</h2>
+        <p><b>Pengertian:</b><br> Kemampuan memanfaatkan teknologi digital untuk meningkatkan efektivitas kerja dan pengambilan keputusan.</p>
+
+        <p><b>Situation:</b><br> Dalam operasional SPBU, terdapat kebutuhan monitoring jaringan secara real-time untuk menghindari downtime layanan.</p>
+
+        <p><b>Task:</b><br> Saya memastikan sistem monitoring berjalan efektif dan bisa digunakan tim untuk respon cepat.</p>
+
+        <p><b>Action:</b></p>
+        <ul>
+        <li>Menggunakan tools monitoring jaringan secara aktif</li>
+        <li>Menyederhanakan informasi teknis agar mudah dipahami tim</li>
+        <li>Mendorong penggunaan data dalam pengambilan keputusan</li>
+        <li>Melakukan evaluasi berbasis data gangguan</li>
+        <li>Mengoptimalkan komunikasi digital antar tim</li>
+        </ul>
+
+        <p><b>Result:</b><br> Respon gangguan menjadi lebih cepat dan downtime layanan dapat ditekan.</p>
+        `,
+
+        gb: `
+        <h2>L-02 Global Business Savvy</h2>
+        <p><b>Pengertian:</b><br> Kemampuan memahami bisnis secara luas dan dampaknya terhadap operasional.</p>
+
+        <p><b>Situation:</b><br> Project B2B membutuhkan pemahaman tidak hanya teknis, tetapi juga kebutuhan bisnis pelanggan.</p>
+
+        <p><b>Task:</b><br> Saya memastikan pekerjaan teknis selaras dengan kebutuhan bisnis klien.</p>
+
+        <p><b>Action:</b></p>
+        <ul>
+        <li>Memahami tujuan bisnis project</li>
+        <li>Menyesuaikan prioritas kerja dengan kebutuhan klien</li>
+        <li>Berkomunikasi dengan stakeholder non-teknis</li>
+        <li>Menghindari keputusan yang merugikan bisnis</li>
+        <li>Menjaga kualitas layanan</li>
+        </ul>
+
+        <p><b>Result:</b><br> Project berjalan sesuai ekspektasi bisnis dan meningkatkan kepercayaan klien.</p>
+        `,
+
+        cf: `
+        <h2>L-03 Customer Focus</h2>
+        <p><b>Pengertian:</b><br> Kemampuan memahami dan memenuhi kebutuhan pelanggan.</p>
+
+        <p><b>Situation:</b><br> Terdapat keluhan layanan lambat dari pelanggan SPBU.</p>
+
+        <p><b>Task:</b><br> Saya harus memastikan pelayanan kembali optimal.</p>
+
+        <p><b>Action:</b></p>
+        <ul>
+        <li>Mendengar keluhan pelanggan secara langsung</li>
+        <li>Mengidentifikasi akar masalah</li>
+        <li>Melakukan perbaikan cepat</li>
+        <li>Memberikan update kepada pelanggan</li>
+        <li>Memastikan tidak terulang</li>
+        </ul>
+
+        <p><b>Result:</b><br> Kepuasan pelanggan meningkat dan keluhan menurun.</p>
+        `,
+
+bs: `
+<h2>L-04 Building Strategic Partnership</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan membangun hubungan kerja sama yang saling menguntungkan dengan berbagai pihak.</p>
+
+<p><b>Situation:</b><br> Dalam project B2B, diperlukan koordinasi dengan vendor dan pihak lokal di beberapa wilayah.</p>
+
+<p><b>Task:</b><br> Saya memastikan hubungan kerja berjalan lancar untuk mendukung kelancaran project.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Membangun komunikasi aktif dengan stakeholder</li>
+<li>Menjaga kepercayaan antar pihak</li>
+<li>Menyelesaikan kendala secara kolaboratif</li>
+<li>Menjaga komitmen kerja sama</li>
+<li>Menciptakan hubungan jangka panjang</li>
+</ul>
+
+<p><b>Result:</b><br> Koordinasi berjalan lancar dan pekerjaan dapat diselesaikan tanpa hambatan signifikan.</p>
+`,
+
+so: `
+<h2>L-05 Strategic Orientation</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan melihat gambaran besar dan menentukan arah kerja yang tepat.</p>
+
+<p><b>Situation:</b><br> Project memiliki banyak lokasi dengan keterbatasan waktu.</p>
+
+<p><b>Task:</b><br> Saya harus menentukan prioritas pekerjaan agar target tercapai.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Menentukan prioritas lokasi kritis</li>
+<li>Membagi resource secara efektif</li>
+<li>Menyusun timeline kerja</li>
+<li>Mengantisipasi risiko keterlambatan</li>
+<li>Melakukan monitoring progres</li>
+</ul>
+
+<p><b>Result:</b><br> Project berjalan sesuai rencana dan target waktu tercapai.</p>
+`,
+
+de: `
+<h2>L-06 Driving Execution</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan memastikan pekerjaan berjalan dan selesai sesuai target.</p>
+
+<p><b>Situation:</b><br> Deadline project cukup ketat dengan banyak lokasi.</p>
+
+<p><b>Task:</b><br> Saya memastikan seluruh pekerjaan tetap berjalan sesuai jadwal.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Melakukan kontrol harian pekerjaan</li>
+<li>Memastikan progres sesuai timeline</li>
+<li>Menindaklanjuti hambatan di lapangan</li>
+<li>Koordinasi intens dengan tim</li>
+<li>Evaluasi berkala</li>
+</ul>
+
+<p><b>Result:</b><br> Seluruh pekerjaan selesai tepat waktu.</p>
+`,
+
+di: `
+<h2>L-07 Driving Innovation</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan menciptakan cara baru yang lebih efektif dalam bekerja.</p>
+
+<p><b>Situation:</b><br> Proses koordinasi manual menyebabkan keterlambatan informasi.</p>
+
+<p><b>Task:</b><br> Saya perlu meningkatkan efisiensi komunikasi.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Menggunakan tools komunikasi digital</li>
+<li>Menyederhanakan alur laporan</li>
+<li>Mendorong tim menggunakan teknologi</li>
+<li>Mengurangi proses manual</li>
+<li>Mencari cara kerja lebih cepat</li>
+</ul>
+
+<p><b>Result:</b><br> Komunikasi lebih cepat dan efisiensi kerja meningkat.</p>
+`,
+
+do: `
+<h2>L-08 Developing Organizational Capabilities</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan mengembangkan kemampuan tim dan organisasi.</p>
+
+<p><b>Situation:</b><br> Tim memiliki kemampuan yang berbeda-beda.</p>
+
+<p><b>Task:</b><br> Saya harus memastikan semua tim bisa bekerja optimal.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Membagi tugas sesuai kemampuan</li>
+<li>Memberikan arahan kerja</li>
+<li>Melakukan pendampingan</li>
+<li>Mendorong peningkatan skill</li>
+<li>Memberikan kepercayaan kepada tim</li>
+</ul>
+
+<p><b>Result:</b><br> Kinerja tim meningkat dan pekerjaan lebih efektif.</p>
+`,
+
+lc: `
+<h2>L-09 Leading Change</h2>
+
+<p><b>Pengertian:</b><br> Kemampuan memimpin perubahan dalam organisasi.</p>
+
+<p><b>Situation:</b><br> Terjadi perubahan pola kerja dalam project.</p>
+
+<p><b>Task:</b><br> Saya harus memastikan tim bisa beradaptasi.</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Memberikan pemahaman kepada tim</li>
+<li>Mengurangi resistensi perubahan</li>
+<li>Mengarahkan cara kerja baru</li>
+<li>Menjadi contoh dalam perubahan</li>
+<li>Memastikan transisi berjalan lancar</li>
+</ul>
+
+<p><b>Result:</b><br> Tim mampu beradaptasi dan tetap produktif.</p>
+`,
+
+ md: `
+<h2>L-10 Managing Diversity</h2>
+
+<p><b>Pengertian:</b><br>
+Kemampuan untuk memahami, mengelola, dan menyelaraskan perbedaan kondisi, karakter, dan cara kerja dalam tim agar tetap mampu mencapai target secara efektif dan berkelanjutan.
 </p>
+
+<p><b>Situation:</b><br>
+Project tersebar di berbagai wilayah dengan karakter tim dan kondisi lapangan yang berbeda.
+</p>
+
+<p><b>Task:</b><br>
+Memastikan seluruh pekerjaan tetap berjalan selaras dan mencapai target.
+</p>
+
+<p><b>Action:</b></p>
+<ul>
+<li>Menyesuaikan pendekatan kerja tiap wilayah</li>
+<li>Membangun komunikasi terstruktur</li>
+<li>Menunjuk PIC di tiap area</li>
+<li>Mengelola potensi miskomunikasi</li>
+<li>Membangun hubungan dengan stakeholder</li>
+</ul>
+
+<p><b>Result:</b><br>
+Seluruh pekerjaan selesai tepat waktu dan koordinasi tim tetap solid.</p>
+`
+
+    };
+
+const detail = document.querySelector('.detail');
+
+    // 🔥 RESET ANIMASI
+    detail.classList.remove('detail');
+    void detail.offsetWidth; // trigger reflow (biar animasi bisa diulang)
+    detail.classList.add('detail');
+
+    // 🔥 UPDATE ISI
+    detail.innerHTML = data[type];
+}
+</script>
+
 </body>
 </html>

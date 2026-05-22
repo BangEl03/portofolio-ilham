@@ -433,45 +433,7 @@ body::before {
     </div>
 
     <!-- RIGHT -->
-    <div class="detail">
-
-        <div id="md">
-            <h2>L-10 Managing Diversity</h2>
-
-<p><b>Pengertian:</b><br>
-Kemampuan untuk memahami, mengelola, dan menyelaraskan perbedaan kondisi, karakter, dan cara kerja dalam tim agar tetap mampu mencapai target secara efektif dan berkelanjutan.
-</p>
-
-<p><b>Situation:</b><br>
-Pada Januari 2026, saya menangani project B2B Telkom Akses yang tersebar di beberapa wilayah Kalimantan Barat, seperti Ketapang, Kayong Utara, Sintang, Sanggau, hingga Pontianak.  
-Setiap wilayah memiliki tantangan yang berbeda, baik dari sisi geografis, jarak tempuh yang cukup jauh, maupun karakter dan cara kerja tim di lapangan.
-</p>
-
-<p><b>Task:</b><br>
-Saya bertanggung jawab memastikan seluruh pekerjaan dapat diselesaikan dalam waktu 2 bulan, dengan kualitas tetap sesuai standar, serta menjaga agar seluruh tim tetap bisa bekerja selaras meskipun berada di kondisi dan lingkungan yang berbeda.
-</p>
-
-<p><b>Action:</b></p>
-<ul>
-<li><b>Berpikir terbuka:</b> Saya tidak menyamaratakan pendekatan kerja, tetapi terlebih dahulu memahami kondisi masing-masing wilayah dan karakter tim sebelum menentukan strategi.</li>
-
-<li><b>Mengelola perbedaan:</b> Saya menyesuaikan pola kerja antara wilayah remote dan perkotaan, termasuk dalam pengaturan waktu, prioritas pekerjaan, dan distribusi tugas.</li>
-
-<li><b>Mengembangkan tim tanpa membedakan:</b> Saya memberikan kepercayaan kepada anggota tim dengan menunjuk PIC di setiap wilayah, sehingga mereka dapat mengambil keputusan lebih cepat dan berkembang sebagai leader di lapangan.</li>
-
-<li><b>Mengantisipasi potensi miskomunikasi:</b> Saya membangun sistem komunikasi yang lebih terstruktur melalui laporan harian dan koordinasi rutin, untuk memastikan informasi tetap jelas dan tidak menimbulkan salah paham.</li>
-
-<li><b>Membangun hubungan dengan berbagai pihak:</b> Saya aktif menjalin komunikasi dengan stakeholder dan pihak lokal untuk memperlancar proses pekerjaan serta mengatasi kendala di lapangan.</li>
-</ul>
-
-<p><b>Result:</b><br>
-Seluruh pekerjaan di berbagai wilayah berhasil diselesaikan tepat waktu sesuai target yang ditentukan.  
-Selain itu, koordinasi antar tim tetap berjalan dengan baik meskipun memiliki perbedaan latar belakang dan kondisi, serta hubungan dengan stakeholder tetap terjaga hingga proses serah terima selesai.
-</p>
-        </div>
-
-    </div>
-
+    <div class="detail"></div>
 </div>
 
 <!-- TENTANG -->
@@ -553,7 +515,7 @@ function showPage(page) {
     pages.forEach(p => {
         const el = document.getElementById(p);
         el.classList.add('hidden');
-        el.classList.remove('page-enter'); // reset animasi
+        el.classList.remove('page-enter');
     });
 
     const activePage = document.getElementById(page);
@@ -565,8 +527,17 @@ function showPage(page) {
     }, 10);
 
     // ACTIVE MENU
-    document.querySelectorAll('.menu a').forEach(el => el.classList.remove('active'));
-    document.getElementById('m-' + page).classList.add('active');
+    document.querySelectorAll('.menu a')
+        .forEach(el => el.classList.remove('active'));
+
+    document.getElementById('m-' + page)
+        .classList.add('active');
+
+    // 🔥 INI YANG FIX MASALAH KAMU
+    if (page === 'kompetensi') {
+        const firstItem = document.querySelector('.item');
+        showDetail('dl', firstItem);
+    }
 }
 
 function showDetail(type, el) {
